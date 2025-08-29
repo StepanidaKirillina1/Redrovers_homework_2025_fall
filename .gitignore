@@ -41,3 +41,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+#Not hw directories
+/src/test/java/Lectures
+/src/test/java/Reviews
+/src/test/java/GroupMeetings
