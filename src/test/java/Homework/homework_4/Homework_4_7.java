@@ -1,4 +1,4 @@
-package homework_4;
+package Homework.homework_4;
 
 import java.util.Arrays;
 
@@ -17,24 +17,10 @@ public class Homework_4_7 {
         int sum = Arrays.stream(array).reduce(0, (acc, val) -> acc + val);
         int average = sum / (array.length);
 
-        int counter = 0;
-
         for (int number : array) {
             if (number > average + 3 || number < average - 3) {
-                counter++;
+                System.out.println(number);
             }
         }
-
-        int[] result = new int[counter];
-        int resultIndex = 0;
-
-        for (int number : array) {
-            if (number > average + 3 || number < average - 3) {
-                result[resultIndex] = number;
-                resultIndex++;
-            }
-        }
-
-        System.out.println(Arrays.toString(result));
     }
 }
