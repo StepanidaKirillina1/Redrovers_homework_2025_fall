@@ -20,74 +20,56 @@ public class Homework_6_6 {
      */
 
     public static void main(String[] args) {
-//        String str = """
-//            I'm just 16,
-//            going on	17!
-//        """;
+        String str = """
+        I'm just 16,
+        going on 17!
+        """;
 
-        String str = "I'm just 16,\n" +
-                "            going on\t17!";
+        String strExample = "I'm just 16,\n" +
+                "going on\t17!";
 
-        String capitalVowels = "AEIOUY";
-        String smallVowels = "aeiouy";
-        String capitalConsonants = "BCDFGHJKLMNPQRSTVWXZ";
-        String smallConsonants = "bcdfghjklmnpqrstvwxz";
-        String numbers = "0123456789";
-        String punctuationMarks = "!\"#$%&'()*+,-./:;<=>?@[\\]^_{|}~";
-        String whitespaceCharacters = " " + "\n" + "\t" + "\f";
+        System.out.println(getCounters(str));
+        System.out.println("-----------");
+        System.out.println(getCounters(strExample));
+    }
 
-        int capitalVowelsCounter = 0;
-        int smallVowelsCounter = 0;
-        int capitalConsonantsCounter = 0;
-        int smallConsonantsCounter = 0;
+    public static String getCounters(String str) {
+        String capitalLetters = "AEIOUYBCDFGHJKLMNPQRSTVWXZ";
+        String vowels = "aeiouy";
+
+        int capitalLettersCounter = 0;
+        int smallLettersCounter = 0;
+        int vowelsCounter = 0;
+        int consonantsCounter = 0;
         int numbersCounter = 0;
         int punctuationMarksCounter = 0;
         int whitespaceCharactersCounter = 0;
 
         for (char character : str.toCharArray()) {
-            String strChar = String.valueOf(character);
-            if (capitalVowels.contains(strChar)) {
-                capitalVowelsCounter++;
-            }
+            if (Character.isLetter(character)) {
+                if (capitalLetters.indexOf(character) != -1) {
+                    capitalLettersCounter++;
+                } else {
+                    smallLettersCounter++;
+                }
 
-            if (smallVowels.contains(strChar)) {
-                smallVowelsCounter++;
-            }
-
-            if (capitalConsonants.contains(strChar)) {
-                capitalConsonantsCounter++;
-            }
-
-            if (smallConsonants.contains(strChar)) {
-                smallConsonantsCounter++;
-            }
-
-            if (numbers.contains(strChar)) {
+                if (vowels.indexOf(Character.toLowerCase(character)) != -1) {
+                    vowelsCounter++;
+                } else {
+                    consonantsCounter++;
+                }
+            } else if (Character.isDigit(character)) {
                 numbersCounter++;
-            }
-
-            if (punctuationMarks.contains(strChar)) {
-                punctuationMarksCounter++;
-            }
-
-            if (whitespaceCharacters.contains(strChar)) {
+            } else if (Character.isWhitespace(character)) {
                 whitespaceCharactersCounter++;
+            } else {
+                punctuationMarksCounter++;
             }
         }
 
-        System.out.printf("The number of capital characters is %d", capitalConsonantsCounter + capitalVowelsCounter);
-        System.out.println();
-        System.out.printf("The number of small characters is %d", smallVowelsCounter + smallConsonantsCounter);
-        System.out.println();
-        System.out.printf("The number of vowels is %d", smallVowelsCounter + capitalVowelsCounter);
-        System.out.println();
-        System.out.printf("The number of consonants is %d", capitalConsonantsCounter + smallConsonantsCounter);
-        System.out.println();
-        System.out.printf("The number of numbers is %d", numbersCounter);
-        System.out.println();
-        System.out.printf("The number of punctuation marks is %d", punctuationMarksCounter);
-        System.out.println();
-        System.out.printf("The number of white space characters is %d", whitespaceCharactersCounter);
-        System.out.println();
+        return ("This string <%s> has %d capital letter, %d small letters, %d vowels, %d consonants, %d numbers, " +
+                "%d white spaces, %d punctuation marks")
+                .formatted(str, capitalLettersCounter, smallLettersCounter, vowelsCounter, consonantsCounter,
+                        numbersCounter, whitespaceCharactersCounter, punctuationMarksCounter);
     }
 }
