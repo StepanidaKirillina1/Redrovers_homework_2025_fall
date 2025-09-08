@@ -26,7 +26,7 @@ public class Homework_6_7 {
                 continue;
             }
 
-            if (password.length() >= 8 && verifyPassword(password)) {
+            if (verifyPassword(password)) {
                 System.out.println("The password is valid");
                 break;
             } else {
@@ -38,48 +38,34 @@ public class Homework_6_7 {
     public static boolean verifyPassword(String password) {
         String capitalLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String lowerLetters = "abcdefghijklmnopqrstuvwxyz";
-        String numbers = "0123456789";
-        String punctuationMarks = "~@#$%^&*()_-+=";
-        String allowedCharacters = capitalLetters + lowerLetters + numbers + punctuationMarks;
+        String allowedPunctuationMarks = "~@#$%^&*()_-+=";
 
         boolean hasCapitalLatinLetter = false;
         boolean hasLowerLatinLetter = false;
         boolean hasDigit = false;
-        boolean hasPunctuationMark = false;
+        boolean hasAllowedPunctuationMark = false;
+        boolean hasIllegalCharacter = false;
 
         for (int i = 0; i < password.length(); i++) {
             char currentElement = password.charAt(i);
 
-            if (allowedCharacters.indexOf(currentElement) == -1) {
-                System.out.println("smth went wrong here");
-                return false;
-            }
-
-            if (password.contains(" ")) {
-                return false;
-            }
-
-            if (Character.isWhitespace(currentElement)) {
-                return false;
-            }
-
             if (capitalLetters.indexOf(currentElement) != -1) {
                 hasCapitalLatinLetter = true;
-            }
-
-            if (lowerLetters.indexOf(currentElement) != -1) {
+            } else if (lowerLetters.indexOf(currentElement) != -1) {
                 hasLowerLatinLetter = true;
-            }
-
-            if (numbers.indexOf(currentElement) != -1) {
+            } else if (Character.isDigit(currentElement)) {
                 hasDigit = true;
-            }
-
-            if (punctuationMarks.indexOf(currentElement) != -1) {
-                hasPunctuationMark = true;
+            } else if (allowedPunctuationMarks.indexOf(currentElement) != -1) {
+                hasAllowedPunctuationMark = true;
+            } else {
+                hasIllegalCharacter = true;
             }
         }
-
-        return hasCapitalLatinLetter && hasLowerLatinLetter && hasDigit && hasPunctuationMark;
+        return password.length() >= 8 &&
+                hasCapitalLatinLetter &&
+                hasLowerLatinLetter &&
+                hasDigit &&
+                hasAllowedPunctuationMark &&
+                !hasIllegalCharacter;
     }
 }

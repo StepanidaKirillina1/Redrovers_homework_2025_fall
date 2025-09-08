@@ -33,31 +33,18 @@ public class Homework_6_3_6_4 {
         В другой строке — числа на на другой диагонали, от верхнего правого до нижнего левого углов.
         */
 
-        // все числа, лежащие на его диагонали от верхнего левого угла до нижнего правого.
+        int[] array2 = new int[array.length];
+        int[] array3 = new int[array.length];
 
         for (int i = 0; i < array.length; i++) {
-            for ( int j = 0; j < array[i].length; j++) {
-                System.out.print(array[i][j] + " ");
+            for (int j = 0; j < array[i].length; j++) {
+                array2[i] = array[i][i];
+                array3[i] = array[i][array.length - 1 - i];
             }
         }
 
-        System.out.println();
-
-        for (int i = 0; i < array.length; i++) {
-            for ( int j = 0; j < array[i].length; j++) {
-                System.out.print(array[j][i] + " ");
-            }
-        }
-
-        System.out.println();
-
-        // числа на на другой диагонали, от верхнего правого до нижнего левого углов.
-
-        for (int i = 0; i < array.length; i++) {
-            for ( int j = array[i].length - 1; j >= 0; j--) {
-                System.out.print(array[i][j] + " ");
-            }
-        }
+        System.out.println(Arrays.toString(array2));
+        System.out.println(Arrays.toString(array3));
     }
 
     public static int getRandomNumberBetweenMinus999And9999() {
