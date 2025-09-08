@@ -1,4 +1,4 @@
-package Homework.homework8;
+package Homework.homework_8;
 
 import org.junit.jupiter.api.Assertions;
 
