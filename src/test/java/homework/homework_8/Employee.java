@@ -6,11 +6,11 @@ public class Employee {
     в котором хранится информация о сотруднике предприятия: имя, месячная зарплата, количество детей.
      */
 
-    private String name;
-    private int monthlySalary;
-    private int numberOfChildren;
+    private final String name;
+    private final double monthlySalary;
+    private final int numberOfChildren;
 
-    public Employee(String name, int monthlySalary, int numberOfChildren) {
+    public Employee(String name, double monthlySalary, int numberOfChildren) {
         this.name = name;
         this.monthlySalary = monthlySalary;
         this.numberOfChildren = numberOfChildren;
@@ -20,7 +20,7 @@ public class Employee {
         return this.name;
     }
 
-    public int getMonthlySalary() {
+    public double getMonthlySalary() {
         return monthlySalary;
     }
 
@@ -30,11 +30,11 @@ public class Employee {
 
     public static Employee[] getEmployees() {
         return new Employee[]{
-                new Employee("Anna", 10001, 0),
-                new Employee("John", 10001, 1),
-                new Employee("Max", 5000, 0),
-                new Employee("Olga", 5000, 1),
-                new Employee("Ivan", 4999, 0)
+                new Employee("Anna", 15000.0, 1),
+                new Employee("John", 10001.0, 2),
+                new Employee("Max", 5000.0, 0),
+                new Employee("Olga", 5000.0, 1),
+                new Employee("Ivan", 4999.0, 0)
         };
     }
 }

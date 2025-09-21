@@ -7,21 +7,22 @@ public class TaxPayment {
      */
 
     private String name;
-    private int tax;
+    private double taxAmount;
 
     public String getName() {
         return name;
     }
 
-    public int getTax() {
-        return tax;
+    public double getTaxAmount() {
+        return taxAmount;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setTax(int tax) {
-        this.tax = tax;
+    public void setTaxAmount(int tax, double salary) {
+
+        this.taxAmount = salary * tax / 100;
     }
 }
