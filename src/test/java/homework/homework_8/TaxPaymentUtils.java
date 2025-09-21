@@ -19,18 +19,18 @@ public class TaxPaymentUtils {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i].getNumberOfChildren() > -1) {
                 TaxPayment taxPayment = new TaxPayment();
-                int taxSum = employees[i].getMonthlySalary() - (employees[i].getNumberOfChildren() * 1000);
+                double taxSum = employees[i].getMonthlySalary() - (employees[i].getNumberOfChildren() * 1000);
 
                 if (taxSum > 10000) {
-                    taxPayment.setTax(23);
+                    taxPayment.setTaxAmount(23, taxSum);
                     taxPayment.setName(employees[i].getName());
                     taxPayments[i] = taxPayment;
                 } else if (taxSum >= 5000 && taxSum <= 10000) {
-                    taxPayment.setTax(18);
+                    taxPayment.setTaxAmount(18, taxSum);
                     taxPayment.setName(employees[i].getName());
                     taxPayments[i] = taxPayment;
                 } else {
-                    taxPayment.setTax(13);
+                    taxPayment.setTaxAmount(13, taxSum);
                     taxPayment.setName(employees[i].getName());
                     taxPayments[i] = taxPayment;
                 }
@@ -44,11 +44,11 @@ public class TaxPaymentUtils {
 
     public static void main(String[] args) {
         TaxPayment[] taxPayments = TaxPaymentUtils.getEmployeeTaxes(Employee.getEmployees());
-        int[] expectedTaxPayments = new int[]{23, 18, 18, 13, 13};
-        int[] actualTaxPayments = new int[taxPayments.length];
+        double[] expectedTaxPayments = new double[]{3220.0, 1440.18, 900.0, 520.0, 649.87};
+        double[] actualTaxPayments = new double[taxPayments.length];
 
         for (int i = 0; i < taxPayments.length; i++) {
-            actualTaxPayments[i] = taxPayments[i].getTax();
+            actualTaxPayments[i] = taxPayments[i].getTaxAmount();
         }
 
         Assertions.assertArrayEquals(expectedTaxPayments, actualTaxPayments);

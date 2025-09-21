@@ -8,8 +8,8 @@ public class Salary {
     метод должен возвращать сумму зарплат всех сотрудников из массива переданного в качестве аргумента вызова метода.
      */
 
-    public static int getSum(Employee[] employeeArray) {
-        int totalSum = 0;
+    public static double getSum(Employee[] employeeArray) {
+        double totalSum = 0;
 
         for (Employee employee : employeeArray) {
             totalSum += employee.getMonthlySalary();
@@ -19,8 +19,8 @@ public class Salary {
     }
 
     public static void main(String[] args) {
-        int actualSumResult = Salary.getSum(Employee.getEmployees());
+         double actualSumResult = Salary.getSum(Employee.getEmployees());
 
-        Assertions.assertEquals(35001, actualSumResult);
+        Assertions.assertEquals(40000.0, actualSumResult);
     }
 }
